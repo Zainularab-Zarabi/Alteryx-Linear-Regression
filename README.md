@@ -1,161 +1,65 @@
-# Real Estate Data Preparation and Linear Regression in Alteryx
+# Real Estate Price Prediction Using Alteryx
 
-## Project Overview
+## Overview
 
-This project uses Alteryx Designer to prepare a real estate dataset and build a Linear Regression model to predict house prices. The work is divided into two connected workflows:
-
-1. **Data Preparation and EDA**: cleans the original dataset, fixes missing values, removes outliers, creates new features, and exports a cleaned dataset.
-2. **Linear Regression Modeling**: uses the cleaned dataset to analyze feature relationships, train a Linear Regression model, score test data, and calculate prediction error.
-
-This repository includes the original dataset, cleaned dataset, and both Alteryx workflow files.
-
-## Repository Structure
-
-```text
-real-estate-alteryx-regression/
-│
-├── data/
-│   ├── real_estate.csv
-│   └── final_real_estate.csv
-│
-├── workflows/
-│   ├── EDA_RealEstate_Preparation.yxmd
-│   └── Linear_Regression_Alteryx.yxmd
-│
-└── README.md
-```
+This project demonstrates an end to end analytics workflow in Alteryx for real estate data preparation, exploratory data analysis (EDA), feature engineering, and linear regression modeling. The objective was to transform raw housing data into an analysis ready dataset and develop a predictive model for estimating property prices.
 
 ## Dataset
 
-### Original Dataset
+* **real_estate.csv** – Raw dataset
+* **final_real_estate.csv** – Cleaned dataset used for modeling
 
-`data/real_estate.csv`
+The dataset contains information such as property price, property tax, insurance, bedrooms, bathrooms, square footage, lot size, basement size, year built, year sold, and property type.
 
-The original dataset includes real estate property information such as:
+## Data Preparation
 
-- price
-- year_sold
-- property_tax
-- insurance
-- beds
-- baths
-- sqft
-- year_built
-- lot_size
-- basement
-- property_type
+The data preparation workflow included:
 
-### Cleaned Dataset
+* Data type standardization
+* Missing value handling
+* Outlier removal
+* Feature engineering
+* Categorical variable encoding
 
-`data/final_real_estate.csv`
+New features created:
 
-The cleaned dataset was generated from the Alteryx data preparation workflow. It contains 1,863 records and 15 columns. The text field `property_type` was converted into numeric flag columns, and new features were created for modeling.
+* Age
+* Popular_Home
+* Recession_Period
+* Bunglow
+* Condo
 
-Final columns include:
+## EDA Workflow
 
-- price
-- year_sold
-- property_tax
-- insurance
-- beds
-- baths
-- sqft
-- year_built
-- lot_size
-- basement
-- Age
-- Popular_Home
-- Recession_Period
-- Bunglow
-- Condo
+![EDA Workflow](screenshots/eda_workflow.png)
 
-## Workflow 1: Data Preparation and EDA
+## Correlation Analysis
 
-File:
+Correlation analysis was performed to identify relationships between property characteristics and house prices.
 
-`workflows/EDA_RealEstate_Preparation.yxmd`
+![Correlation Analysis](screenshots/correlation_analysis.png)
 
-Main steps:
+## Linear Regression Model
 
-1. Import the original `real_estate.csv` dataset.
-2. Use the Select tool to assign correct data types.
-3. Use Field Summary for exploratory data analysis.
-4. Create an Interactive Chart to compare square footage by property type.
-5. Use Imputation to replace missing `basement` values with 0.
-6. Use Filter to remove the outlier where `lot_size` is greater than or equal to 1,000,000.
-7. Use Formula tools to create:
-   - `Age = year_sold - year_built`
-   - `Popular_Home`
-   - `Recession_Period`
-8. Remove records with negative age values.
-9. Convert `property_type` into numeric flag columns:
-   - `Bunglow`
-   - `Condo`
-10. Remove the original `property_type` text column.
-11. Export the cleaned dataset as `final_real_estate.csv`.
+A Linear Regression model was developed using the cleaned dataset to predict house prices.
 
-## Workflow 2: Linear Regression Model
+![Linear Regression Workflow](screenshots/linear_regression_workflow.png)
 
-File:
+## Results
 
-`workflows/Linear_Regression_Alteryx.yxmd`
+Model performance was evaluated by comparing actual and predicted property prices. Prediction error was calculated using:
 
-Main steps:
+`abs([Score_fit] - [price])`
 
-1. Import the cleaned dataset `final_real_estate.csv`.
-2. Use the Select tool to verify numeric data types.
-3. Use Association Analysis to review correlations with the target variable `price`.
-4. Split the data using Create Samples:
-   - 80% estimation/training sample
-   - 20% validation/test sample
-5. Train a Linear Regression model using `price` as the target variable.
-6. Use the Score tool to generate predictions on the validation/test data.
-7. Use the Formula tool to calculate prediction error:
+The workflow successfully generated house price predictions and measured prediction accuracy on the validation dataset.
 
-```text
-abs([Score_fit]-[price])
-```
-
-## Target Variable
-
-The target variable for the Linear Regression model is:
-
-```text
-price
-```
+![Prediction Results](screenshots/prediction_results.png)
 
 ## Tools Used
 
-- Alteryx Designer
-- Input Data Tool
-- Select Tool
-- Field Summary Tool
-- Interactive Chart Tool
-- Imputation Tool
-- Filter Tool
-- Formula Tool
-- Association Analysis Tool
-- Create Samples Tool
-- Linear Regression Tool
-- Score Tool
-- Browse Tool
-
-## How to Run the Workflows
-
-1. Open Alteryx Designer.
-2. Open `workflows/EDA_RealEstate_Preparation.yxmd`.
-3. Make sure the input path points to `data/real_estate.csv`.
-4. Run the workflow to generate the cleaned dataset.
-5. Open `workflows/Linear_Regression_Alteryx.yxmd`.
-6. Make sure the input path points to `data/final_real_estate.csv`.
-7. Run the workflow to train and test the Linear Regression model.
-
-## Notes
-
-The cleaned dataset is already included in this repository, so the Linear Regression workflow can be run directly using `data/final_real_estate.csv`.
+* Alteryx Designer
+* Microsoft Excel
 
 ## Author
-
-Zainularab Zarabi  
-Business Intelligence Systems Infrastructure Student  
-Algonquin College
+Zainularab Zarabi
+Machine Learning Project
