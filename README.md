@@ -39,9 +39,14 @@ Correlation analysis was performed to identify relationships between property ch
 
 ![Correlation Analysis](Images/correlation_analysis.png)
 
+## Target Variable
+
+The objective of the model was to predict **property price** using housing characteristics and engineered features. Therefore, **Price** was selected as the target variable, while all remaining variables were used as predictor features during model training.
+
+
 ## Linear Regression Model
 
-A Linear Regression model was developed using the cleaned dataset to predict house prices.
+A Linear Regression model was developed using the cleaned dataset to predict residential property prices based on structural and financial property characteristics.
 
 ![Linear Regression Workflow](Images/linear_regression_workflow.png)
 
