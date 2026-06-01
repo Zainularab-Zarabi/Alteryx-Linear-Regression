@@ -31,19 +31,19 @@ New features created:
 
 ## EDA Workflow
 
-![EDA Workflow](eda_workflow.png)
+![EDA Workflow](Images/eda_workflow.png)
 
 ## Correlation Analysis
 
 Correlation analysis was performed to identify relationships between property characteristics and house prices.
 
-![Correlation Analysis](correlation_analysis.png)
+![Correlation Analysis](Images/correlation_analysis.png)
 
 ## Linear Regression Model
 
 A Linear Regression model was developed using the cleaned dataset to predict house prices.
 
-![Linear Regression Workflow](linear_regression_workflow.png)
+![Linear Regression Workflow](Images/linear_regression_workflow.png)
 
 ## Results
 
@@ -53,7 +53,7 @@ Model performance was evaluated by comparing actual and predicted property price
 
 The workflow successfully generated house price predictions and measured prediction accuracy on the validation dataset.
 
-![Prediction Results](prediction_results.png)
+![Prediction Results](Images/prediction_results.png)
 
 ## Tools Used
 
